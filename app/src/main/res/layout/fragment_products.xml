@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFF8F2"
+    android:padding="14dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Menú de comidas rápidas"
+        android:textStyle="bold"
+        android:textColor="#3E2723"
+        android:textSize="24sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Elige una categoría, revisa los productos y agrégalos al carrito."
+        android:textColor="#6D4C41"
+        android:layout_marginTop="4dp" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button android:id="@+id/btnAll" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🍽️ Todos" android:textSize="12sp" />
+            <Button android:id="@+id/btnBurgers" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🍔 Hamburguesas" android:textSize="12sp" android:layout_marginStart="6dp" />
+            <Button android:id="@+id/btnPizzas" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🍕 Pizzas" android:textSize="12sp" android:layout_marginStart="6dp" />
+            <Button android:id="@+id/btnSalchipapas" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🍟 Salchipapas" android:textSize="12sp" android:layout_marginStart="6dp" />
+            <Button android:id="@+id/btnDogs" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🌭 Perros" android:textSize="12sp" android:layout_marginStart="6dp" />
+            <Button android:id="@+id/btnMazorcadas" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🌽 Mazorcadas" android:textSize="12sp" android:layout_marginStart="6dp" />
+            <Button android:id="@+id/btnCombos" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🥤 Combos" android:textSize="12sp" android:layout_marginStart="6dp" />
+            <Button android:id="@+id/btnDrinks" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="🧃 Bebidas" android:textSize="12sp" android:layout_marginStart="6dp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp" />
+
+    <TextView
+        android:id="@+id/tvState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:padding="12dp" />
+
+    <Button
+        android:id="@+id/btnRetry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reintentar"
+        android:visibility="gone" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerProducts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="8dp" />
+</LinearLayout>

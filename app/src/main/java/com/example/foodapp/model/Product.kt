@@ -1,9 +1,11 @@
 package com.example.foodapp.model
 
 data class Product(
-    val id: Int,
-    val name: String,
-    val price: Double,
-    val description: String,
-    val image: Int
+    val id: String = "",
+    val name: String = "",
+    val description: String = "",
+    val price: Double = 0.0,
+    val categoryId: String = "",
+    val imageName: String = "pizza",
+    val tag: String = ""
 )

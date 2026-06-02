@@ -1,44 +1,55 @@
 package com.example.foodapp.ui.home
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.view.Gravity
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
+import com.example.foodapp.R
 import com.example.foodapp.databinding.ActivityHomeBinding
-import com.example.foodapp.viewmodel.HomeViewModel
-import com.example.foodapp.ui.home.ProductAdapter
-import com.example.foodapp.ui.detail.DetailActivity
-class HomeActivity : AppCompatActivity() {
+import com.example.foodapp.ui.cart.CartFragment
+import com.example.foodapp.ui.orders.OrdersFragment
+import com.example.foodapp.ui.profile.ProfileFragment
 
+class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
-    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val adapter = ProductAdapter { product ->
+        binding.btnOpenMenu.setOnClickListener { binding.drawerLayout.openDrawer(GravityCompat.START) }
+        binding.btnHomeTop.setOnClickListener { goHome() }
 
-            val intent = Intent(this, DetailActivity::class.java)
+        binding.btnProducts.setOnClickListener { goHome() }
+        binding.btnCart.setOnClickListener { openFragment(CartFragment(), "Carrito de compra") }
+        binding.btnOrders.setOnClickListener { openFragment(OrdersFragment(), "Mis pedidos") }
+        binding.btnProfile.setOnClickListener { openFragment(ProfileFragment(), "Mi perfil") }
 
-            intent.putExtra("name", product.name)
-            intent.putExtra("price", product.price)
-            intent.putExtra("description", product.description)
-            intent.putExtra("image", product.image)
+        binding.menuInicio.setOnClickListener { goHome() }
+        binding.menuProductos.setOnClickListener { goHome() }
+        binding.menuCarrito.setOnClickListener { openFragment(CartFragment(), "Carrito de compra") }
+        binding.menuPedidos.setOnClickListener { openFragment(OrdersFragment(), "Historial de pedidos") }
+        binding.menuPerfil.setOnClickListener { openFragment(ProfileFragment(), "Mi perfil") }
 
-            startActivity(intent)
+        if (savedInstanceState == null) {
+            goHome()
         }
+    }
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerView.adapter = adapter
+    fun goHome() {
+        openFragment(ProductsFragment(), "FoodApp Pedidos")
+    }
 
-        viewModel.products.observe(this) {
-            adapter.submitList(it)
+    private fun openFragment(fragment: Fragment, title: String) {
+        binding.tvToolbarTitle.text = title
+        supportFragmentManager.beginTransaction()
+            .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
+            .replace(R.id.fragmentContainer, fragment)
+            .commit()
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
         }
-
-        viewModel.loadProducts()
     }
 }
