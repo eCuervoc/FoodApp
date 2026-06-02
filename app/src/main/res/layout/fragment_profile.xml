@@ -45,9 +45,26 @@
         android:textColor="#5D4037" />
 
     <Button
+        android:id="@+id/btnTestCrash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#FF7043"
+        android:text="Registrar falla de prueba en Firebase"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Este botón registra un error no fatal controlado para demostrar Crashlytics en la sustentación."
+        android:textColor="#6D4C41"
+        android:textSize="13sp" />
+
+    <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cerrar sesión"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="18dp" />
 </LinearLayout>

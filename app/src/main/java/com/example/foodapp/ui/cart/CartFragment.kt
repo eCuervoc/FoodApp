@@ -13,6 +13,7 @@ import com.example.foodapp.auth.AuthRepository
 import com.example.foodapp.databinding.FragmentCartBinding
 import com.example.foodapp.model.CartItem
 import com.example.foodapp.model.Order
+import com.example.foodapp.utils.NetworkUtils
 import com.example.foodapp.utils.PriceFormatter
 import com.example.foodapp.utils.RepositoryProvider
 import kotlinx.coroutines.launch
@@ -116,6 +117,15 @@ class CartFragment : Fragment() {
         val note = binding.etNote.text.toString().trim()
         if (address.isBlank()) {
             binding.etAddress.error = "Escribe la dirección de entrega"
+            return
+        }
+
+        if (!NetworkUtils.isOnline(requireContext())) {
+            Toast.makeText(
+                requireContext(),
+                "No tienes conexión a internet. Conéctate para confirmar el pedido.",
+                Toast.LENGTH_LONG
+            ).show()
             return
         }
 
